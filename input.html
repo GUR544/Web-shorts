@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter YouTube Link</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    input { width: 300px; padding: 10px; font-size: 16px; }
+    button { padding: 10px 20px; font-size: 16px; margin-top: 20px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Paste a YouTube Video URL</h2>
+  <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+  <br>
+  <button onclick="saveLink()">Continue</button>
+
+  <script>
+    function saveLink() {
+      const url = document.getElementById("videoUrl").value;
+      if (url.includes("youtube.com/watch?v=")) {
+        localStorage.setItem("videoUrl", url);
+        window.location.href = "player.html";
+      } else {
+        alert("Please enter a valid YouTube video URL.");
+      }
+    }
+  </script>
+</body>
+</html>

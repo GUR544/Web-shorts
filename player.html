@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Player</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    iframe { width: 560px; height: 315px; display: none; margin-top: 20px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Ready to Watch?</h2>
+  <button onclick="playVideo()">Play Video</button>
+  <div id="playerContainer"></div>
+
+  <script>
+    const url = localStorage.getItem("videoUrl");
+    let videoId = "";
+
+    try {
+      videoId = new URL(url).searchParams.get("v");
+    } catch (e) {
+      document.getElementById("playerContainer").innerText = "Invalid video URL.";
+    }
+
+    function playVideo() {
+      if (videoId) {
+        document.getElementById("playerContainer").innerHTML =
+          `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>`;
+        document.querySelector("iframe").style.display = "block";
+      } else {
+        document.getElementById("playerContainer").innerText = "Invalid video ID.";
+      }
+    }
+  </script>
+</body>
+</html>
